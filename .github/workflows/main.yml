@@ -65,6 +65,14 @@ jobs:
         uses: Azure/k8s-deploy@v1
         with:
           manifests: |
-          k8s/mongo/deployment.yaml
-          k8s/mongo/service.yaml
+            ./src/k8s/mongo/deployment.yaml
+            ./src/k8s/mongo/service.yaml
       
+          
+      - name: Deploy Website
+        uses: Azure/k8s-deploy@v1
+        with:
+          manifests: |
+            ./src/k8s/website/deployment.yaml
+            ./src/k8s/website/service.yaml
+          image: pfelicissimo/rotten-tomatoes:${{ github.run_number }}
